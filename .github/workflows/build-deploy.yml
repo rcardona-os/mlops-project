@@ -1,0 +1,32 @@
+name: OpenShift AI GitOps Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Triggers whenever code is pushed to main
+
+jobs:
+  deploy-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Kubeflow SDK
+        # Make sure this matches the kfp version you used in the lab!
+        run: pip install kfp==2.7.0 urllib3 
+
+      - name: Compile Pipeline to YAML
+        run: python pipeline.py
+
+      - name: Deploy to OpenShift AI
+        env:
+          # This injects the GitHub Secrets into the deploy.py script
+          OPENSHIFT_URL: ${{ secrets.OPENSHIFT_URL }}
+          OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+        run: python deploy.py
