@@ -1,8 +1,11 @@
-@dsl.pipeline(
-name="enterprise-secure-s3-pipeline",
-description="A production-ready pipeline using injected Kubernetes Secrets"
+from kfp import dsl, compiler
+from kfp import kubernetes
+
+# 1. Define the component
+@dsl.component(
+    base_image="quay.io/opendatahub/workbench-images:runtime-datascience-ubi9-python-3.11"
 )
-def secure_s3_pipeline():
+def s3_test_step():
     # Instantiate your step(s)
     task1 = data_extraction_step()
     
