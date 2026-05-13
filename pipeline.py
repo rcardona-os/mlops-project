@@ -9,7 +9,7 @@ def secure_s3_pipeline():
     # SECURITY MAGIC: Inject the OpenShift Secret directly into the pod at runtime!
     kubernetes.use_secret_as_env(
         task=task1,
-        secret_name='s3-data-lake-qwsd88',
+        secret_name='s3-data-lake-qwsd89',
         secret_key_to_env={
             'AWS_ACCESS_KEY_ID': 'AWS_ACCESS_KEY_ID',
             'AWS_SECRET_ACCESS_KEY': 'AWS_SECRET_ACCESS_KEY'
