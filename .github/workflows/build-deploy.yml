@@ -18,8 +18,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install Kubeflow SDK
-        # Make sure this matches the kfp version you used in the lab!
-        run: pip install kfp==2.7.0 urllib3 
+        # Added kfp-kubernetes so the pipeline can inject the S3 secrets!
+        run: pip install kfp==2.7.0 kfp-kubernetes urllib3 
 
       - name: Compile Pipeline to YAML
         run: python pipeline.py
