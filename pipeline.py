@@ -22,4 +22,4 @@ if __name__ == '__main__':
         pipeline_func=secure_s3_pipeline,
         package_path='secure_pipeline.yaml' 
     )
-    print("Mas que nada : Blueprint compiled to: secure_pipeline.yaml")
+    print("Mas que tod : Blueprint compiled to: secure_pipeline.yaml")
